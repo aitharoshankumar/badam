@@ -6,6 +6,14 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- ✅ REQUIRED -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath/>
+    </parent>
+
     <groupId>com.badamshakti</groupId>
     <artifactId>auth-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -13,16 +21,16 @@
 
     <properties>
         <java.version>17</java.version>
-        <spring.boot.version>3.2.5</spring.boot.version>
-        <spring.cloud.version>2023.0.1</spring.cloud.version>
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
     </properties>
 
+    <!-- ✅ Spring Cloud version control -->
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring.cloud.version}</version>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -30,6 +38,7 @@
     </dependencyManagement>
 
     <dependencies>
+
         <!-- Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,7 +61,6 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
         </dependency>
 
         <!-- Eureka Client -->
@@ -79,10 +87,12 @@
             <version>0.11.5</version>
             <scope>runtime</scope>
         </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
+            <!-- ✅ Version inherited from parent -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
