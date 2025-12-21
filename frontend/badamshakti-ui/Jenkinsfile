@@ -1,28 +1,45 @@
 pipeline {
     agent any
 
-    tools {
-       maven 'maven-3'
-       jdk 'java-17'
-       NODE_HOME = "/usr/bin/node"
-    }
-
     stages {
 
         stage('Checkout Code') {
             steps {
-                checkout scm git branch: 'roshan', url: 'https://github.com/aitharoshankumar/badam.git'
+                git branch: 'roshan',
+                    url: 'https://github.com/aitharoshankumar/badam.git'
+            }
+        }
+
+        stage('Verify Node & NPM') {
+            steps {
+                sh 'node -v'
+                sh 'npm -v'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                dir('frontend/badamshakti-ui') {
+                    sh 'npm install'
+                }
             }
         }
 
         stage('Build Frontend') {
             steps {
                 dir('frontend/badamshakti-ui') {
-                    sh 'npm install'
                     sh 'npm run build'
                 }
             }
         }
+    }
 
+    post {
+        success {
+            echo 'Frontend build completed successfully'
+        }
+        failure {
+            echo 'Frontend build failed'
+        }
     }
 }
