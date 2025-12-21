@@ -9,7 +9,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                checkout scm
+                checkout scm git branch: 'roshan', url: 'https://github.com/aitharoshankumar/badam.git'
             }
         }
 
