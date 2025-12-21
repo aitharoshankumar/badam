@@ -19,7 +19,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                dir('frontend/badamshakti-ui') {
+                dir('frontend/badamshakti-ui/public') {
                     sh 'npm install'
                 }
             }
